@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>HTML5 Web Messaging API Demo</title>
+
+	<script>
+		if(window.addEventListener){
+			window.addEventListener('message', receberMsg, false);
+		} else{
+			window.attachEvent("onmessage", receberMsg);
+		};
+
+		function receberMsg(e){
+			var msg;
+			var containerMsg = document.getElementById('recebe-msg');
+
+			if(e.origin == 'http://openblog.github.com'){
+				msg = 'Mensagem recebida: <br>';
+				msg += 'Msg: ' + e.data + '<br>';
+				msg += 'Origem: ' + e.origin;
+
+				containerMsg.innerHTML = msg;
+			} else{
+				containerMsg.innerHTML = 'Origem não autorizada!';
+			}
+		}
+	</script>
+</head>
+<body>
+	<p id="recebe-msg"></p>
+</body>
+</html>
